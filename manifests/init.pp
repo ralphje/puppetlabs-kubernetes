@@ -87,6 +87,14 @@
 #  The URL to download the etcd archive
 #  Defaults to https://github.com/coreos/etcd/releases/download/v${etcd_version}/${etcd_archive}
 #
+# [*etcd_install_method*]
+#  The method on how to install etcd. Can be either wget (using etcd_source) or package (using $etcd_package_name)
+#  Defaults to wget
+# 
+# [*etcd_package_name*]
+#  The system package name for installing etcd
+#  Defaults to etcd-server
+#
 # [*runc_version*]
 #  The version of runc to install
 #  Defaults to 1.0.0-rc5
@@ -324,7 +332,9 @@ class kubernetes (
   Optional[String] $containerd_archive                             = $kubernetes::params::containerd_archive,
   Optional[String] $containerd_source                              = $kubernetes::params::containerd_source,
   String $etcd_archive                                             = $kubernetes::params::etcd_archive,
+  String $etcd_install_method                                      = $kubernetes::params::etcd_install_method,
   String $etcd_source                                              = $kubernetes::params::etcd_source,
+  String $etcd_package_name                                        = $kubernetes::params::etcd_package_name,
   Optional[String] $kubernetes_apt_location                        = $kubernetes::params::kubernetes_apt_location,
   Optional[String] $kubernetes_apt_release                         = $kubernetes::params::kubernetes_apt_release,
   Optional[String] $kubernetes_apt_repos                           = $kubernetes::params::kubernetes_apt_repos,
